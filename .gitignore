@@ -28,4 +28,6 @@ levmu
 *.d
 # cannot add "./"
 build/
+levmu.db/
 vendor/build/
+vendor/install/
