@@ -1,5 +1,6 @@
 [submodule "vendor/muduo"]
 	path = vendor/muduo
+    url  = https://github.com/chenshuo/muduo
 
 [submodule "test/hiredis"]
 	path = test/hiredis
