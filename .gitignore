@@ -25,5 +25,5 @@
 
 #levmu only
 *.d
-build/
-vendor/build/
+./build/
+./vendor/build/
