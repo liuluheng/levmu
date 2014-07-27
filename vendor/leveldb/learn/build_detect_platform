@@ -1,0 +1,114 @@
+#!/bin/sh
+
+OUTPUT=$1
+PREFIX=$2
+if test -z "$OUTPUT" || test -z "$PREFIX"; then
+  echo "usage: $0 <output-filename> <directory_prefix>" >&2
+  exit 1
+fi
+
+# Delete existing output, if it exists
+rm -f $OUTPUT
+touch $OUTPUT
+
+if test -z "$CC"; then
+    CC=cc
+fi
+
+if test -z "$CXX"; then
+    CXX=g++
+fi
+
+if test -z "$TMPDIR"; then
+    TMPDIR=/tmp
+fi
+
+# Detect OS
+if test -z "$TARGET_OS"; then
+    TARGET_OS=`uname -s`
+fi
+
+COMMON_FLAGS=
+PLATFORM_CCFLAGS=
+PLATFORM_CXXFLAGS=
+PLATFORM_LDFLAGS=
+PLATFORM_LIBS=
+
+MEMCMP_FLAG=
+if [ "$CXX" = "g++" ]; then
+    # Use libc's memcmp instead of GCC's memcmp.  This results in ~40%
+    # performance improvement on readrandom under gcc 4.4.3 on Linux/x86.
+    MEMCMP_FLAG="-fno-builtin-memcmp"
+fi
+
+case "$TARGET_OS" in
+    Linux)
+        PLATFORM=OS_LINUX
+        COMMON_FLAGS="$MEMCMP_FLAG -pthread -DOS_LINUX"
+        PLATFORM_LDFLAGS="-pthread"
+        PORT_FILE=port_posix.cc
+        ;;
+esac
+
+DIRS="$PREFIX/"
+
+set -f # temporarily disable globbing so that our patterns aren't expanded
+PRUNE_TEST="-name *test*.cc -prune"
+#PRUNE_BENCH="-name *_bench.cc -prune"
+#PRUNE_TOOL="-name leveldb_main.cc -prune"
+#PORTABLE_FILES=`find $DIRS $PRUNE_TEST -o $PRUNE_BENCH -o $PRUNE_TOOL -o -name '*.cc' -print | sort | sed "s,^$PREFIX/,," | tr "\n" " "`
+PORTABLE_FILES=`find $DIRS $PRUNE_TEST -o -name '*.cc' -print | sort | sed "s,^$PREFIX/,," | tr "\n" " "`
+
+set +f # re-enable globbing
+
+# The sources consist of the portable files, plus the platform-specific port
+# file.
+
+echo "SOURCES=$PORTABLE_FILES " >> $OUTPUT
+#echo "MEMENV_SOURCES=helpers/memenv/memenv.cc" >> $OUTPUT
+
+    CXXOUTPUT="${TMPDIR}/leveldb_build_detect_platform-cxx.$$"
+
+    # If -std=c++0x works, use <cstdatomic>.  Otherwise use port_posix.h.
+    $CXX $CXXFLAGS -std=c++0x -x c++ - -o $CXXOUTPUT 2>/dev/null  <<EOF
+      #include <cstdatomic>
+      int main() {}
+EOF
+    if [ "$?" = 0 ]; then
+        COMMON_FLAGS="$COMMON_FLAGS -DLEVELDB_PLATFORM_POSIX -DLEVELDB_CSTDATOMIC_PRESENT"
+        PLATFORM_CXXFLAGS="-std=c++0x"
+    else
+        COMMON_FLAGS="$COMMON_FLAGS -DLEVELDB_PLATFORM_POSIX"
+    fi
+
+    # Test whether Snappy library is installed
+    # http://code.google.com/p/snappy/
+    $CXX $CXXFLAGS -x c++ - -o $CXXOUTPUT 2>/dev/null  <<EOF
+      #include <snappy.h>
+      int main() {}
+EOF
+    if [ "$?" = 0 ]; then
+        COMMON_FLAGS="$COMMON_FLAGS -DSNAPPY"
+        PLATFORM_LIBS="$PLATFORM_LIBS -lsnappy"
+    fi
+
+    # Test whether tcmalloc is available
+    $CXX $CXXFLAGS -x c++ - -o $CXXOUTPUT -ltcmalloc 2>/dev/null  <<EOF
+      int main() {}
+EOF
+    if [ "$?" = 0 ]; then
+        PLATFORM_LIBS="$PLATFORM_LIBS -ltcmalloc"
+    fi
+
+    rm -f $CXXOUTPUT 2>/dev/null
+
+PLATFORM_CCFLAGS="$PLATFORM_CCFLAGS $COMMON_FLAGS"
+PLATFORM_CXXFLAGS="$PLATFORM_CXXFLAGS $COMMON_FLAGS"
+
+echo "CC=$CC" >> $OUTPUT
+echo "CXX=$CXX" >> $OUTPUT
+echo "PLATFORM=$PLATFORM" >> $OUTPUT
+echo "PLATFORM_LDFLAGS=$PLATFORM_LDFLAGS" >> $OUTPUT
+echo "PLATFORM_LIBS=$PLATFORM_LIBS" >> $OUTPUT
+echo "PLATFORM_CCFLAGS=$PLATFORM_CCFLAGS" >> $OUTPUT
+echo "PLATFORM_CXXFLAGS=$PLATFORM_CXXFLAGS" >> $OUTPUT

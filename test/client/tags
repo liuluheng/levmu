@@ -1,0 +1,184 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.2.3	//
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -g -O2$/;"	m
+CXX	Makefile	/^CXX = g++$/;"	m
+CXXFLAGS	Makefile	/^CXXFLAGS = -Wall -g -O2 -DMUDUO_STD_STRING -I..\/..\/vendor\/muduo -I..\/..\/vendor\/leveldb\/include$/;"	m
+HIREDIS_MAJOR	hiredis.h	38;"	d
+HIREDIS_MINOR	hiredis.h	39;"	d
+HIREDIS_PATCH	hiredis.h	40;"	d
+LDFLAGS	Makefile	/^LDFLAGS = ..\/..\/vendor\/leveldb\/libleveldb.a -L..\/..\/vendor\/build\/release\/lib -lmuduo_base -lmuduo_net -lpthread -lgmp$/;"	m
+REDIS_BLOCK	hiredis.h	57;"	d
+REDIS_CONNECTED	hiredis.h	61;"	d
+REDIS_DISCONNECTING	hiredis.h	67;"	d
+REDIS_ERR	hiredis.h	42;"	d
+REDIS_ERR_EOF	hiredis.h	50;"	d
+REDIS_ERR_IO	hiredis.h	49;"	d
+REDIS_ERR_OOM	hiredis.h	52;"	d
+REDIS_ERR_OTHER	hiredis.h	53;"	d
+REDIS_ERR_PROTOCOL	hiredis.h	51;"	d
+REDIS_FREEING	hiredis.h	71;"	d
+REDIS_IN_CALLBACK	hiredis.h	74;"	d
+REDIS_KEEPALIVE_INTERVAL	hiredis.h	91;"	d
+REDIS_MONITORING	hiredis.h	80;"	d
+REDIS_OK	hiredis.h	43;"	d
+REDIS_READER_MAX_BUF	hiredis.h	89;"	d
+REDIS_REPLY_ARRAY	hiredis.h	83;"	d
+REDIS_REPLY_ERROR	hiredis.h	87;"	d
+REDIS_REPLY_INTEGER	hiredis.h	84;"	d
+REDIS_REPLY_NIL	hiredis.h	85;"	d
+REDIS_REPLY_STATUS	hiredis.h	86;"	d
+REDIS_REPLY_STRING	hiredis.h	82;"	d
+REDIS_SUBSCRIBED	hiredis.h	77;"	d
+SDS_MAX_PREALLOC	sds.h	34;"	d
+_BSD_SOURCE	fmacros.h	5;"	d
+_OSX	fmacros.h	17;"	d
+_POSIX_C_SOURCE	fmacros.h	9;"	d
+_XOPEN_SOURCE	fmacros.h	11;"	d
+_XOPEN_SOURCE	fmacros.h	13;"	d
+__HIREDIS_FMACRO_H	fmacros.h	2;"	d
+__HIREDIS_H	hiredis.h	33;"	d
+__SDS_H	sds.h	32;"	d
+__redisReaderSetError	hiredis.c	/^static void __redisReaderSetError(redisReader *r, int type, const char *str) {$/;"	f	file:
+__redisReaderSetErrorOOM	hiredis.c	/^static void __redisReaderSetErrorOOM(redisReader *r) {$/;"	f	file:
+__redisReaderSetErrorProtocolByte	hiredis.c	/^static void __redisReaderSetErrorProtocolByte(redisReader *r, char byte) {$/;"	f	file:
+__redisSetError	hiredis.c	/^void __redisSetError(redisContext *c, int type, const char *str) {$/;"	f
+buf	hiredis.h	/^    char *buf; \/* Read buffer *\/$/;"	m	struct:redisReader
+buf	sds.h	/^    char buf[];$/;"	m	struct:sdshdr
+bulklen	hiredis.c	/^static size_t bulklen(size_t len) {$/;"	f	file:
+chrtos	hiredis.c	/^static size_t chrtos(char *buf, size_t size, char byte) {$/;"	f	file:
+client_	client.cc	/^  TcpClient client_;$/;"	m	class:levmuClient	file:
+cond_	client.cc	/^  Condition cond_;$/;"	m	class:levmuClient	file:
+connect	client.cc	/^  void connect()$/;"	f	class:levmuClient
+connection_	client.cc	/^  TcpConnectionPtr connection_;$/;"	m	class:levmuClient	file:
+createArray	hiredis.h	/^    void *(*createArray)(const redisReadTask*, int);$/;"	m	struct:redisReplyObjectFunctions
+createArrayObject	hiredis.c	/^static void *createArrayObject(const redisReadTask *task, int elements) {$/;"	f	file:
+createInteger	hiredis.h	/^    void *(*createInteger)(const redisReadTask*, long long);$/;"	m	struct:redisReplyObjectFunctions
+createIntegerObject	hiredis.c	/^static void *createIntegerObject(const redisReadTask *task, long long value) {$/;"	f	file:
+createNil	hiredis.h	/^    void *(*createNil)(const redisReadTask*);$/;"	m	struct:redisReplyObjectFunctions
+createNilObject	hiredis.c	/^static void *createNilObject(const redisReadTask *task) {$/;"	f	file:
+createReplyObject	hiredis.c	/^static redisReply *createReplyObject(int type) {$/;"	f	file:
+createString	hiredis.h	/^    void *(*createString)(const redisReadTask*, char*, size_t);$/;"	m	struct:redisReplyObjectFunctions
+createStringObject	hiredis.c	/^static void *createStringObject(const redisReadTask *task, char *str, size_t len) {$/;"	f	file:
+defaultFunctions	hiredis.c	/^static redisReplyObjectFunctions defaultFunctions = {$/;"	v	file:
+disconnect	client.cc	/^  void disconnect()$/;"	f	class:levmuClient
+element	hiredis.h	/^    struct redisReply **element; \/* elements vector for REDIS_REPLY_ARRAY *\/$/;"	m	struct:redisReply
+elements	hiredis.h	/^    int elements; \/* number of elements in multibulk container *\/$/;"	m	struct:redisReadTask
+elements	hiredis.h	/^    size_t elements; \/* number of elements, for REDIS_REPLY_ARRAY *\/$/;"	m	struct:redisReply
+err	hiredis.h	/^    int err; \/* Error flags, 0 when there is no error *\/$/;"	m	struct:redisContext
+err	hiredis.h	/^    int err; \/* Error flags, 0 when there is no error *\/$/;"	m	struct:redisReader
+errstr	hiredis.h	/^    char errstr[128]; \/* String representation of error when applicable *\/$/;"	m	struct:redisContext
+errstr	hiredis.h	/^    char errstr[128]; \/* String representation of error when applicable *\/$/;"	m	struct:redisReader
+fd	hiredis.h	/^    int fd;$/;"	m	struct:redisContext
+flags	hiredis.h	/^    int flags;$/;"	m	struct:redisContext
+fn	hiredis.h	/^    redisReplyObjectFunctions *fn;$/;"	m	struct:redisReader
+free	sds.h	/^    int free;$/;"	m	struct:sdshdr
+freeObject	hiredis.h	/^    void (*freeObject)(void*);$/;"	m	struct:redisReplyObjectFunctions
+freeReplyObject	hiredis.c	/^void freeReplyObject(void *reply) {$/;"	f
+hex_digit_to_int	sds.c	/^int hex_digit_to_int(char c) {$/;"	f
+idx	hiredis.h	/^    int idx; \/* index in parent (array) object *\/$/;"	m	struct:redisReadTask
+integer	hiredis.h	/^    long long integer; \/* The integer when type is REDIS_REPLY_INTEGER *\/$/;"	m	struct:redisReply
+intlen	hiredis.c	/^static int intlen(int i) {$/;"	f	file:
+is_hex_digit	sds.c	/^int is_hex_digit(char c) {$/;"	f
+len	hiredis.h	/^    int len; \/* Length of string *\/$/;"	m	struct:redisReply
+len	hiredis.h	/^    size_t len; \/* Buffer length *\/$/;"	m	struct:redisReader
+len	sds.h	/^    int len;$/;"	m	struct:sdshdr
+levmuClient	client.cc	/^  levmuClient(EventLoop* loop, const InetAddress& serverAddr)$/;"	f	class:levmuClient
+levmuClient	client.cc	/^class levmuClient : boost::noncopyable$/;"	c	file:
+main	client.cc	/^int main(int argc, char* argv[])$/;"	f
+main	sds.c	/^int main(void) {$/;"	f
+maxbuf	hiredis.h	/^    size_t maxbuf; \/* Max length of unused buffer *\/$/;"	m	struct:redisReader
+moveToNextTask	hiredis.c	/^static void moveToNextTask(redisReader *r) {$/;"	f	file:
+mutex_	client.cc	/^  MutexLock mutex_;$/;"	m	class:levmuClient	file:
+obj	hiredis.h	/^    void *obj; \/* holds user-generated value for a read task *\/$/;"	m	struct:redisReadTask
+obuf	hiredis.h	/^    char *obuf; \/* Write buffer *\/$/;"	m	struct:redisContext
+onConnection	client.cc	/^  void onConnection(const TcpConnectionPtr& conn) {$/;"	f	class:levmuClient	file:
+onMessage	client.cc	/^  void onMessage(const TcpConnectionPtr&,$/;"	f	class:levmuClient	file:
+parent	hiredis.h	/^    struct redisReadTask *parent; \/* parent task *\/$/;"	m	struct:redisReadTask
+pos	hiredis.h	/^    size_t pos; \/* Buffer cursor *\/$/;"	m	struct:redisReader
+privdata	hiredis.h	/^    void *privdata; \/* user-settable arbitrary field *\/$/;"	m	struct:redisReadTask
+privdata	hiredis.h	/^    void *privdata;$/;"	m	struct:redisReader
+processBulkItem	hiredis.c	/^static int processBulkItem(redisReader *r) {$/;"	f	file:
+processItem	hiredis.c	/^static int processItem(redisReader *r) {$/;"	f	file:
+processLineItem	hiredis.c	/^static int processLineItem(redisReader *r) {$/;"	f	file:
+processMultiBulkItem	hiredis.c	/^static int processMultiBulkItem(redisReader *r) {$/;"	f	file:
+readBytes	hiredis.c	/^static char *readBytes(redisReader *r, unsigned int bytes) {$/;"	f	file:
+readLine	hiredis.c	/^static char *readLine(redisReader *r, int *_len) {$/;"	f	file:
+readLongLong	hiredis.c	/^static long long readLongLong(char *s) {$/;"	f	file:
+reader	hiredis.h	/^    redisReader *reader; \/* Protocol reader *\/$/;"	m	struct:redisContext
+redisContext	hiredis.h	/^typedef struct redisContext {$/;"	s
+redisContext	hiredis.h	/^} redisContext;$/;"	t
+redisContextInit	hiredis.c	/^static redisContext *redisContextInit(void) {$/;"	f	file:
+redisFormatCommand	hiredis.c	/^int redisFormatCommand(char **target, const char *format, ...) {$/;"	f
+redisFormatCommandArgv	hiredis.c	/^int redisFormatCommandArgv(char **target, int argc, const char **argv, const size_t *argvlen) {$/;"	f
+redisFree	hiredis.c	/^void redisFree(redisContext *c) {$/;"	f
+redisFreeKeepFd	hiredis.c	/^int redisFreeKeepFd(redisContext *c) {$/;"	f
+redisReadTask	hiredis.h	/^typedef struct redisReadTask {$/;"	s
+redisReadTask	hiredis.h	/^} redisReadTask;$/;"	t
+redisReader	hiredis.h	/^typedef struct redisReader {$/;"	s
+redisReader	hiredis.h	/^} redisReader;$/;"	t
+redisReaderCreate	hiredis.c	/^redisReader *redisReaderCreate(void) {$/;"	f
+redisReaderFeed	hiredis.c	/^int redisReaderFeed(redisReader *r, const char *buf, size_t len) {$/;"	f
+redisReaderFree	hiredis.c	/^void redisReaderFree(redisReader *r) {$/;"	f
+redisReaderGetReply	hiredis.c	/^int redisReaderGetReply(redisReader *r, void **reply) {$/;"	f
+redisReply	hiredis.h	/^typedef struct redisReply {$/;"	s
+redisReply	hiredis.h	/^} redisReply;$/;"	t
+redisReplyObjectFunctions	hiredis.h	/^typedef struct redisReplyObjectFunctions {$/;"	s
+redisReplyObjectFunctions	hiredis.h	/^} redisReplyObjectFunctions;$/;"	t
+redisReplyReaderCreate	hiredis.h	149;"	d
+redisReplyReaderFeed	hiredis.h	151;"	d
+redisReplyReaderFree	hiredis.h	150;"	d
+redisReplyReaderGetError	hiredis.h	155;"	d
+redisReplyReaderGetObject	hiredis.h	154;"	d
+redisReplyReaderGetReply	hiredis.h	152;"	d
+redisReplyReaderSetPrivdata	hiredis.h	153;"	d
+redisvFormatCommand	hiredis.c	/^int redisvFormatCommand(char **target, const char *format, va_list ap) {$/;"	f
+reply	hiredis.h	/^    void *reply; \/* Temporary reply pointer *\/$/;"	m	struct:redisReader
+ridx	hiredis.h	/^    int ridx; \/* Index of current read task *\/$/;"	m	struct:redisReader
+rstack	hiredis.h	/^    redisReadTask rstack[9];$/;"	m	struct:redisReader
+sds	sds.h	/^typedef char *sds;$/;"	t
+sdsAllocSize	sds.c	/^size_t sdsAllocSize(sds s) {$/;"	f
+sdsIncrLen	sds.c	/^void sdsIncrLen(sds s, int incr) {$/;"	f
+sdsMakeRoomFor	sds.c	/^sds sdsMakeRoomFor(sds s, size_t addlen) {$/;"	f
+sdsRemoveFreeSpace	sds.c	/^sds sdsRemoveFreeSpace(sds s) {$/;"	f
+sdsavail	sds.h	/^static inline size_t sdsavail(const sds s) {$/;"	f
+sdscat	sds.c	/^sds sdscat(sds s, const char *t) {$/;"	f
+sdscatlen	sds.c	/^sds sdscatlen(sds s, const void *t, size_t len) {$/;"	f
+sdscatprintf	sds.c	/^sds sdscatprintf(sds s, const char *fmt, ...) {$/;"	f
+sdscatrepr	sds.c	/^sds sdscatrepr(sds s, const char *p, size_t len) {$/;"	f
+sdscatsds	sds.c	/^sds sdscatsds(sds s, const sds t) {$/;"	f
+sdscatvprintf	sds.c	/^sds sdscatvprintf(sds s, const char *fmt, va_list ap) {$/;"	f
+sdsclear	sds.c	/^void sdsclear(sds s) {$/;"	f
+sdscmp	sds.c	/^int sdscmp(const sds s1, const sds s2) {$/;"	f
+sdscpy	sds.c	/^sds sdscpy(sds s, const char *t) {$/;"	f
+sdscpylen	sds.c	/^sds sdscpylen(sds s, const char *t, size_t len) {$/;"	f
+sdsdup	sds.c	/^sds sdsdup(const sds s) {$/;"	f
+sdsempty	sds.c	/^sds sdsempty(void) {$/;"	f
+sdsfree	sds.c	/^void sdsfree(sds s) {$/;"	f
+sdsfreesplitres	sds.c	/^void sdsfreesplitres(sds *tokens, int count) {$/;"	f
+sdsfromlonglong	sds.c	/^sds sdsfromlonglong(long long value) {$/;"	f
+sdsgrowzero	sds.c	/^sds sdsgrowzero(sds s, size_t len) {$/;"	f
+sdshdr	sds.h	/^struct sdshdr {$/;"	s
+sdsjoin	sds.c	/^sds sdsjoin(char **argv, int argc, char *sep, size_t seplen) {$/;"	f
+sdsjoinsds	sds.c	/^sds sdsjoinsds(sds *argv, int argc, const char *sep, size_t seplen) {$/;"	f
+sdslen	sds.h	/^static inline size_t sdslen(const sds s) {$/;"	f
+sdsmapchars	sds.c	/^sds sdsmapchars(sds s, const char *from, const char *to, size_t setlen) {$/;"	f
+sdsnew	sds.c	/^sds sdsnew(const char *init) {$/;"	f
+sdsnewlen	sds.c	/^sds sdsnewlen(const void *init, size_t initlen) {$/;"	f
+sdsrange	sds.c	/^void sdsrange(sds s, int start, int end) {$/;"	f
+sdssplitargs	sds.c	/^sds *sdssplitargs(const char *line, int *argc) {$/;"	f
+sdssplitlen	sds.c	/^sds *sdssplitlen(const char *s, int len, const char *sep, int seplen, int *count) {$/;"	f
+sdstolower	sds.c	/^void sdstolower(sds s) {$/;"	f
+sdstoupper	sds.c	/^void sdstoupper(sds s) {$/;"	f
+sdstrim	sds.c	/^void sdstrim(sds s, const char *cset) {$/;"	f
+sdsupdatelen	sds.c	/^void sdsupdatelen(sds s) {$/;"	f
+seekNewline	hiredis.c	/^static char *seekNewline(char *s, size_t len) {$/;"	f	file:
+send	client.cc	/^  void send(const char *msg) {$/;"	f	class:levmuClient
+str	hiredis.h	/^    char *str; \/* Used for both REDIS_REPLY_ERROR and REDIS_REPLY_STRING *\/$/;"	m	struct:redisReply
+thread_test	client.cc	/^void* thread_test(void *arg) {$/;"	f
+type	hiredis.h	/^    int type; \/* REDIS_REPLY_* *\/$/;"	m	struct:redisReply
+type	hiredis.h	/^    int type;$/;"	m	struct:redisReadTask
