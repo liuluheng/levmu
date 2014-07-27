@@ -23,3 +23,7 @@
 *.out
 *.app
 
+#levmu only
+*.d
+./build
+./vendor/build
