@@ -39,6 +39,7 @@ flags = [
 '-Wextra',
 #'-Werror',
 #'-Wc++98-compat',
+'-DMUDUO_STD_STRING'
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -57,7 +58,7 @@ flags = [
 '-x',
 'c++',
 '-I',
-'.',
+'../vendor/leveldb/include',
 '-I',
 '../vendor/muduo/',
 '-isystem',
