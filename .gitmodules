@@ -3,4 +3,4 @@
 	url = git://github.com/redis/hiredis
 [submodule "vendor/muduo"]
 	path = vendor/muduo
-	url = git://github.com/chenshuo/muduo
+	url = https://github.com/chenshuo/muduo
