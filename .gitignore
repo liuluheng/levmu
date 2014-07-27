@@ -23,6 +23,9 @@
 *.out
 *.app
 
+# Python
+*.pyc
+
 #levmu only
 levmu
 *.d
