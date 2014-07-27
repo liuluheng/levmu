@@ -25,5 +25,6 @@
 
 #levmu only
 *.d
-./build/
-./vendor/build/
+# cannot add "./"
+build/
+vendor/build/
