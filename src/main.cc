@@ -4,7 +4,7 @@
 #include <muduo/net/EventLoop.h>
 #include <muduo/net/InetAddress.h>
 
-#include <stdlib.h> // for atoi()
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
