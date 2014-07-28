@@ -1,0 +1,3 @@
+[submodule "vendor/muduo"]
+	path = vendor/muduo
+	url = git@github.com:chenshuo/muduo.git
