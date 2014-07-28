@@ -1,3 +1,6 @@
 [submodule "vendor/muduo"]
 	path = vendor/muduo
 	url = git@github.com:chenshuo/muduo.git
+[submodule "vendor/leveldb"]
+	path = vendor/leveldb
+	url = git@github.com:basho/leveldb.git
