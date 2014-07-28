@@ -2,7 +2,10 @@
 
 #include <muduo/base/Logging.h>
 #include <muduo/base/Mutex.h>
+<<<<<<< HEAD
 #include <muduo/base/Thread.h>
+=======
+>>>>>>> 624d7343b4bed17244c6aa1858a5f1cd2da23df4
 #include <muduo/base/Condition.h>
 #include <muduo/net/EventLoop.h>
 #include <muduo/net/TcpClient.h>
@@ -15,6 +18,7 @@
 using namespace muduo;
 using namespace muduo::net;
 
+<<<<<<< HEAD
 namespace levmu {
 class Client : boost::noncopyable {
  public:
@@ -34,6 +38,29 @@ class Client : boost::noncopyable {
   }
 
   void disconnect() {
+=======
+class levmuClient : boost::noncopyable
+{
+ public:
+  levmuClient(EventLoop* loop, const InetAddress& serverAddr)
+    : client_(loop, serverAddr, "levmuClient"),
+      mutex_(),
+      cond_(mutex_) {
+    client_.setConnectionCallback(
+        boost::bind(&levmuClient::onConnection, this, _1));
+    client_.setMessageCallback(
+        boost::bind(&levmuClient::onMessage, this, _1, _2, _3));
+    client_.enableRetry();
+  }
+
+  void connect()
+  {
+    client_.connect();
+  }
+
+  void disconnect()
+  {
+>>>>>>> 624d7343b4bed17244c6aa1858a5f1cd2da23df4
     // client_.disconnect();
   }
 
@@ -92,12 +119,23 @@ class Client : boost::noncopyable {
   TcpConnectionPtr connection_;
 };
 
+<<<<<<< HEAD
 }  //namespace levmu
 
 void* thread_test(levmu::Client *client) 
 {
     char *a;
     redisFormatCommand(&a, "SET key %s", std::string(1024, 'b').c_str());
+=======
+void* thread_test(void *arg) {
+    levmuClient* client = static_cast<levmuClient*>(arg);
+    char b[1025];
+    memset(b, 'b', 1024);
+    b[1024] = static_cast<char>(0);
+
+    char *a;
+    redisFormatCommand(&a, "SET key %s", b);
+>>>>>>> 624d7343b4bed17244c6aa1858a5f1cd2da23df4
     client->send(a);
     redisFormatCommand(&a, "GET key");
     client->send(a);
@@ -111,6 +149,10 @@ void* thread_test(levmu::Client *client)
     redisFormatCommand(&a, "GET incr_key");
     client->send(a);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 624d7343b4bed17244c6aa1858a5f1cd2da23df4
     return NULL;
 }
 
@@ -122,12 +164,24 @@ int main(int argc, char* argv[])
   uint16_t port = static_cast<uint16_t>(atoi("8323"));
   InetAddress serverAddr("127.0.0.1", port);
 
+<<<<<<< HEAD
   levmu::Client client(&loop, serverAddr);
   client.connect();
 
   Thread test(boost::bind(thread_test, &client), "test_thread");
   test.start();
   
+=======
+  levmuClient client(&loop, serverAddr);
+  client.connect();
+
+  //Thread test(thread_test);
+  //test.start();
+  //
+  pthread_t pid;
+  pthread_create(&pid, NULL, thread_test, static_cast<void*>(&client));
+
+>>>>>>> 624d7343b4bed17244c6aa1858a5f1cd2da23df4
   loop.loop();
   client.disconnect();
 }

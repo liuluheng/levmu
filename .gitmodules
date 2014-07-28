@@ -1,0 +1,6 @@
+[submodule "test/hiredis"]
+	path = test/hiredis
+	url = git://github.com/redis/hiredis
+[submodule "vendor/muduo"]
+	path = vendor/muduo
+	url = https://github.com/chenshuo/muduo

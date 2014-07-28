@@ -35,11 +35,11 @@ import ycm_core
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
 flags = [
-'-DMUDUO_STD_STRING'
 '-Wall',
 '-Wextra',
 #'-Werror',
 #'-Wc++98-compat',
+'-DMUDUO_STD_STRING'
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
