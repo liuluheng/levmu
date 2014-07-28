@@ -13,8 +13,8 @@
 
 namespace levmu {
 Server::Server(muduo::net::EventLoop* loop,
-                       const muduo::net::InetAddress& listenAddr,
-                       int32_t dbn)
+               const muduo::net::InetAddress& listenAddr,
+               int32_t dbn)
   : server_(loop, listenAddr, "Server"), 
     db_num(dbn),
     db_path("./levmu.db"),
@@ -41,7 +41,7 @@ Server::Server(muduo::net::EventLoop* loop,
             //flush stdout
             _exit(1);
         }
-    }else{
+    } else {
         options = new leveldb::Options[db_num];
 
         db=new leveldb::DB*[db_num];
@@ -52,7 +52,10 @@ Server::Server(muduo::net::EventLoop* loop,
 
             int count = sprintf(buf, "/db-%03d", i);
             //TODO the db path
-            status = leveldb::DB::Open(options[i], (db_path+std::string(buf,count)).c_str(), &db[i]);
+            status = leveldb::DB::Open(options[i], 
+                                       (db_path +
+                                        std::string(buf,count)).c_str(),
+                                       &db[i]);
             if(!status.ok()) {
                 puts("leveldb open error");
                 //exit(); is NOT thread safe. P94
