@@ -8,6 +8,7 @@
 
 
 namespace levmu {
+
 class Server;
 class Request;
 
@@ -25,11 +26,9 @@ class redisCodec : boost::noncopyable {
   private:
    size_t get_int(muduo::net::Buffer* buf, 
                   const char **next_idx);
-
    void do_request(boost::shared_ptr<Request>);
 
-   Server  *server_;
-
+   Server *server_;
    int msg_len_;
 };
 

@@ -4,7 +4,7 @@
 #include <muduo/net/EventLoop.h>
 #include <muduo/net/InetAddress.h>
 
-#include <stdlib.h>
+#include <stdlib.h> //for atoi();
 
 int main(int argc, char *argv[])
 {
@@ -13,10 +13,14 @@ int main(int argc, char *argv[])
   muduo::net::EventLoop loop;
   muduo::net::InetAddress listenAddr(8323);
   levmu::Server server(&loop, listenAddr);
+
   if (argc > 1) {
       server.setThreadNum(atoi(argv[1]));
   }
+
   server.start();
   loop.loop();
+
+  return 0;
 }
 

@@ -15,7 +15,7 @@ std::map<std::string, Request::COMMAND> Request::cmd_map;
 bool _ignored = Request::init_cmd_map();
 
 Request::Request(Server *server, 
-                           const muduo::net::TcpConnectionPtr& conn)
+                 const muduo::net::TcpConnectionPtr& conn)
     :server_(server),
      db_index(0),
      arg_count(-1),
@@ -174,5 +174,4 @@ void Request::levmu_incrby(){
 }
 
 }
-
 

@@ -20,8 +20,8 @@ class Request {
   friend class redisCodec;
  public:
 
-  explicit Request(Server *,
-               const muduo::net::TcpConnectionPtr& conn); 
+  explicit Request(Server *server,
+                   const muduo::net::TcpConnectionPtr& conn); 
 
   bool completed() { 
       return arg_count>=0 && arg_count-args.size()==0;

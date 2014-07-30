@@ -10,10 +10,7 @@
 
 namespace levmu {
 
-class Request;
-
-class Server
-{
+class Server {
  public:
   Server(muduo::net::EventLoop* loop,
          const muduo::net::InetAddress& listenAddr,

@@ -9,9 +9,10 @@
 #include <boost/bind.hpp>
 
 #include <stdio.h>
-#include <unistd.h> //for _exit(1)
+#include <unistd.h> //for _exit(1);
 
 namespace levmu {
+
 Server::Server(muduo::net::EventLoop* loop,
                const muduo::net::InetAddress& listenAddr,
                int32_t dbn)
@@ -26,7 +27,7 @@ Server::Server(muduo::net::EventLoop* loop,
             boost::bind(&redisCodec::onMessage, &codec_, _1, _2, _3));
 
     leveldb::Status status;
-    if(db_num<1){
+    if (db_num < 1) {
         options = new leveldb::Options[1];
         options[0].create_if_missing = true;
         options[0].filter_policy = leveldb::NewBloomFilterPolicy(10);
@@ -76,8 +77,8 @@ void Server::onConnection(const muduo::net::TcpConnectionPtr& conn) {
 }
 
 void Server::onMessage(const muduo::net::TcpConnectionPtr& conn,
-                           muduo::net::Buffer* buf,
-                           muduo::Timestamp time) {
+                       muduo::net::Buffer* buf,
+                       muduo::Timestamp time) {
   //not used..
   std::string msg(buf->retrieveAllAsString());
   LOG_INFO << conn->name() << " echo " << msg.size() << " bytes, "
