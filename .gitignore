@@ -29,6 +29,9 @@
 #levmu only
 levmu
 *.d
+add_cr.sh
+copyright.txt
+
 # cannot add "./"
 build/
 levmu.db/

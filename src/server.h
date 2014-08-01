@@ -1,3 +1,8 @@
+// Use of this source code is governed by a MIT-style license
+// that can be found in the License file.
+//
+// Author: Liu Lu Heng
+
 #ifndef _LEVMU_SERVER_H_
 #define _LEVMU_SERVER_H_ 
 
