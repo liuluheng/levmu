@@ -8,8 +8,8 @@ It could be implemented more, but the main purpose is not for real use.
 
 ALSO the Implementation has referred to redis-leveldb...
 
-## Acquire && Compile
--------
+## Acquire && Compile && run
+
     git clone git@github.com:liuluheng/levmu.git
     git submodule init
     git submodule update
