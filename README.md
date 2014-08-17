@@ -2,11 +2,9 @@
 =====
 This repository was created for learning leveldb and muduo.
 
-It has implemented several redis protocol, like SET, GET, INCR, to store data in leveldb, using muduo for communication.
+It has implemented several redis protocol, like SET, GET, INCR, to store data in leveldb, using muduo for communication.It could implemented more, but the main purpose is not for real use.
 
-It could be implemented more, but the main purpose is not for real use.
-
-ALSO the Implementation has referred to redis-leveldb...
+The implementation has referred to redis-leveldb...
 
 ## Acquire && Compile && run
 
