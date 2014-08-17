@@ -8,8 +8,18 @@ It could be implemented more, but the main purpose is not for real use.
 
 ALSO the Implementation has referred to redis-leveldb...
 
-## Compile
-the repository has used the -DMUDUO_STD_STRING, so you need to add this when you compile muduo...
+## Acquire && Compile
+-------
+    git clone git@github.com:liuluheng/levmu.git
+    git submodule init
+    git submodule update
+    cd vendor/muduo
+    ./build.sh
+    cd ../leveldb
+    make -j2
+    cd ../../
+    ./build.sh
+    ./levmu
 
 ## Progress
   - Compiles  :white_check_mark:
