@@ -6,8 +6,7 @@
 #ifndef _LEVMU_SERVER_H_
 #define _LEVMU_SERVER_H_ 
 
-#include "codec.h"
-
+#include "codec.h" 
 #include <muduo/net/TcpServer.h>
 
 #include <leveldb/db.h>
@@ -29,8 +28,13 @@ class Server {
       server_.start();
   }
 
-  leveldb::DB * get_db(int dbn = 0) {
-      return db[dbn];
+  //leveldb::Status db_put(const leveldb::Slice& key,
+  //                       const leveldb::Slice& value) {
+  //  DB->Put(key, value);
+  //}
+
+  leveldb::DB *get_db(int dbn = 0) {
+      return db_[dbn];
   }
   const leveldb::ReadOptions& read_options() {
       return read_options_;
@@ -45,17 +49,18 @@ class Server {
   void onMessage(const muduo::net::TcpConnectionPtr& conn,
                  muduo::net::Buffer* buf,
                  muduo::Timestamp time);
+  void db_init(void);
 
   muduo::net::TcpServer server_;
 
-  int32_t db_num;
-  std::string db_path;
-  int clients_num;
+  int clients_num_;
+  int32_t db_num_;
+  std::string db_path_;
 
-  leveldb::Options *options;
+  leveldb::Options *options_;
+  leveldb::DB **db_;
   leveldb::ReadOptions read_options_;
   leveldb::WriteOptions write_options_;
-  leveldb::DB **db;
 
   redisCodec codec_;
 };

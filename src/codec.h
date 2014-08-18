@@ -18,23 +18,22 @@ class Server;
 class Request;
 
 class redisCodec : boost::noncopyable {
-  public:
-   explicit 
-   redisCodec(Server *server)
-               : server_(server),
-                 msg_len_(0) {}
+ public:
+  explicit redisCodec(Server *server)
+           : server_(server)
+           , msg_len_(0) {}
 
-   void onMessage(const muduo::net::TcpConnectionPtr& conn,
-                  muduo::net::Buffer* buf,
-                  muduo::Timestamp receiveTime); 
+  void onMessage(const muduo::net::TcpConnectionPtr& conn,
+                 muduo::net::Buffer* buf,
+                 muduo::Timestamp receiveTime); 
 
-  private:
-   size_t get_int(muduo::net::Buffer* buf, 
-                  const char **next_idx);
-   void do_request(boost::shared_ptr<Request>);
+ private:
+  size_t get_int(muduo::net::Buffer* buf, 
+                 const char **next_idx);
+  void do_request(boost::shared_ptr<Request>);
 
-   Server *server_;
-   int msg_len_;
+  Server *server_;
+  int msg_len_;
 };
 
 }
