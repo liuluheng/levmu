@@ -10,7 +10,7 @@ client: client.o hiredis.o sds.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm *.o
+	rm -f *.o client
 
 .cc.o:
 	$(CXX) $(CXXFLAGS) -c $< -o $@

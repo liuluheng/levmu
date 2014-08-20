@@ -29,7 +29,7 @@ class Request {
                    const muduo::net::TcpConnectionPtr& conn); 
 
   bool completed() { 
-      return arg_count>=0 && arg_count-args.size()==0;
+      return arg_count_ >= 0 && arg_count_ - args_.size() == 0;
   }
   void run();
 
@@ -42,13 +42,13 @@ class Request {
   void levmu_incrby();
 
   Server *server_;
-  int32_t db_index;
-  int32_t arg_count;
-  std::string name;
-  std::vector<std::string> args;
+  int32_t db_index_;
+  int32_t arg_count_;
+  std::string name_;
+  std::vector<std::string> args_;
 
   typedef void (Request::*COMMAND)();
-  static std::map<std::string, COMMAND> cmd_map;
+  static std::map<std::string, COMMAND> cmd_map_;
 
   boost::shared_ptr<Response> response_;
 
