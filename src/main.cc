@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   levmu::Server server(&loop, listenAddr);
 
   if (argc > 1) {
-      server.setThreadNum(atoi(argv[1]));
+    server.setThreadNum(atoi(argv[1]));
   }
 
   server.start();

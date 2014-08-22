@@ -21,11 +21,11 @@ class Server {
          int32_t dbn = 0);
 
   void setThreadNum(int thread_nm) {
-      server_.setThreadNum(thread_nm);
+    server_.setThreadNum(thread_nm);
   }
 
   void start() {
-      server_.start();
+    server_.start();
   }
 
   //leveldb::Status db_put(const leveldb::Slice& key,
@@ -34,13 +34,13 @@ class Server {
   //}
 
   leveldb::DB *get_db(int dbn = 0) {
-      return db_[dbn];
+    return db_[dbn];
   }
   const leveldb::ReadOptions& read_options() {
-      return read_options_;
+    return read_options_;
   }
   const leveldb::WriteOptions& write_options() {
-      return write_options_;
+    return write_options_;
   }
 
  private:

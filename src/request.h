@@ -24,17 +24,18 @@ class Response;
 
 class Request {
   friend class redisCodec;
- public:
 
+ public:
   explicit Request(Server *server,
                    const muduo::net::TcpConnectionPtr& conn); 
 
   bool completed() { 
-      return arg_count_ >= 0 && arg_count_ - args_.size() == 0;
+    return arg_count_ >= 0 && arg_count_ - args_.size() == 0;
   }
   void run();
 
   static bool init_cmd_map();
+
  private:
   void _run();
   void levmu_set();

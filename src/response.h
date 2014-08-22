@@ -13,27 +13,27 @@
 namespace levmu {
 
 class Response {
-    const muduo::net::TcpConnectionPtr conn_;
-    muduo::string write_buffer;
+  const muduo::net::TcpConnectionPtr conn_;
+  muduo::string write_buffer_;
 
-    public:
-    explicit 
-    Response(const muduo::net::TcpConnectionPtr& conn)
-        : conn_(conn), write_buffer("") {}
+ public:
+  explicit 
+      Response(const muduo::net::TcpConnectionPtr& conn)
+      : conn_(conn), write_buffer_("") {}
 
-    ~Response();
+  ~Response();
 
-    void write_nil();
-    void write_error(const char* msg);
-    void write_status(const char* msg);
-    void write_integer(const char *out, size_t out_size);
-    void write_bulk(const char *out, size_t out_size);
-    void write_bulk(const muduo::string &out);
-    void write_mbulk_header(int n);
-    private:
-    //None copyable
-    Response(const Response&);
-    void operator=(const Response&);
+  void write_nil();
+  void write_error(const char* msg);
+  void write_status(const char* msg);
+  void write_integer(const char *out, size_t out_size);
+  void write_bulk(const char *out, size_t out_size);
+  void write_bulk(const muduo::string &out);
+  void write_mbulk_header(int n);
+ private:
+  //None copyable
+  Response(const Response&);
+  void operator=(const Response&);
 };
 
 }

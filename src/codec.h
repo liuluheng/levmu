@@ -20,8 +20,8 @@ class Request;
 class redisCodec : boost::noncopyable {
  public:
   explicit redisCodec(Server *server)
-           : server_(server)
-           , msg_len_(0) {}
+      : server_(server)
+      , msg_len_(0) {}
 
   void onMessage(const muduo::net::TcpConnectionPtr& conn,
                  muduo::net::Buffer* buf,

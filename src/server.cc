@@ -22,10 +22,10 @@ Server::Server(muduo::net::EventLoop* loop,
                const muduo::net::InetAddress& listenAddr,
                int32_t dbn)
     : server_(loop, listenAddr, "Server"), 
-    clients_num_(0),
-    db_num_(dbn),
-    db_path_("./levmu.db"),
-    codec_(this) {
+      clients_num_(0),
+      db_num_(dbn),
+      db_path_("./levmu.db"),
+      codec_(this) {
       server_.setConnectionCallback(
           boost::bind(&Server::onConnection, this, _1));
       server_.setMessageCallback(
@@ -81,8 +81,8 @@ void Server::db_init(void)
 
 void Server::onConnection(const muduo::net::TcpConnectionPtr& conn) {
   LOG_INFO << "Server - " << conn->peerAddress().toIpPort() << " -> "
-           << conn->localAddress().toIpPort() << " is "
-           << (conn->connected() ? "UP" : "DOWN");
+      << conn->localAddress().toIpPort() << " is "
+      << (conn->connected() ? "UP" : "DOWN");
 }
 
 //not used..
