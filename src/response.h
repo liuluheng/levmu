@@ -8,13 +8,13 @@
 
 #include <muduo/net/Callbacks.h>
 
-#include <string>
+//#include <string>
 
 namespace levmu {
 
 class Response {
     const muduo::net::TcpConnectionPtr conn_;
-    std::string write_buffer;
+    muduo::string write_buffer;
 
     public:
     explicit 
@@ -28,7 +28,7 @@ class Response {
     void write_status(const char* msg);
     void write_integer(const char *out, size_t out_size);
     void write_bulk(const char *out, size_t out_size);
-    void write_bulk(const std::string &out);
+    void write_bulk(const muduo::string &out);
     void write_mbulk_header(int n);
     private:
     //None copyable

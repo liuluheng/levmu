@@ -16,7 +16,7 @@
 
 namespace levmu {
 
-std::map<std::string, Request::COMMAND> Request::cmd_map_;
+std::map<muduo::string, Request::COMMAND> Request::cmd_map_;
 bool _ignored = Request::init_cmd_map();
 
 bool Request::init_cmd_map() {
@@ -79,7 +79,7 @@ void Request::levmu_get() {
     return;
   }
 
-  std::string out;
+  muduo::string out;
   leveldb::Status status;
   status = server_->get_db()->Get(server_->read_options(),
                                   args_[0], &out);
@@ -95,7 +95,7 @@ void Request::levmu_get() {
 
 void Request::levmu_incr(){
 
-  std::string out;
+  muduo::string out;
   leveldb::Status status;
 
   status = server_->get_db()->Get(server_->read_options(),
@@ -135,7 +135,7 @@ void Request::levmu_incr(){
 
 void Request::levmu_incrby(){
 
-  std::string out;
+  muduo::string out;
   leveldb::Status status;
   status = server_->get_db()->Get(server_->read_options(),
                                   args_[0], &out);

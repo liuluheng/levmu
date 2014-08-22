@@ -56,7 +56,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
             }
             int len = get_int(buf, &next_idx);
             CHECK_BUFFER(len + 2);
-            current_req->name_ = std::string(next_idx, next_idx + len);
+            current_req->name_ = muduo::string(next_idx, next_idx + len);
             std::transform(current_req->name_.begin(), 
                            current_req->name_.end(),
                            current_req->name_.begin(), 
@@ -76,7 +76,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
             }
             int len = get_int(buf, &next_idx);
             CHECK_BUFFER(len + 2);
-            current_req->args_.push_back(std::string(next_idx, 
+            current_req->args_.push_back(muduo::string(next_idx, 
                                                      next_idx + len));
             next_idx += len + 2;
             msg_len_ += len + 2;

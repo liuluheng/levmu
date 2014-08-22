@@ -22,19 +22,19 @@ void Response::write_nil(){
 
 void Response::write_error(const char* msg){
     write_buffer+="-";
-    write_buffer+=std::string(msg,strlen(msg));
+    write_buffer+=muduo::string(msg,strlen(msg));
     write_buffer+="\r\n";
 }
 
 void Response::write_status(const char* msg){
     write_buffer+="+";
-    write_buffer+=std::string(msg,strlen(msg));
+    write_buffer+=muduo::string(msg,strlen(msg));
     write_buffer+="\r\n";
 }
 
 void Response::write_integer(const char *out, size_t out_size){
     write_buffer+=":";
-    write_buffer+=std::string(out,out_size);
+    write_buffer+=muduo::string(out,out_size);
     write_buffer+="\r\n";
 }
 
@@ -42,13 +42,13 @@ void Response::write_bulk(const char *out, size_t out_size){
     char buf[32];
     int count = sprintf(buf, "%zu", out_size);
     write_buffer+="$";
-    write_buffer+=std::string(buf,count);
+    write_buffer+=muduo::string(buf,count);
     write_buffer+="\r\n";
-    write_buffer+=std::string(out,out_size);
+    write_buffer+=muduo::string(out,out_size);
     write_buffer+="\r\n";
 }
 
-void Response::write_bulk(const std::string &out){
+void Response::write_bulk(const muduo::string &out){
     write_bulk(out.c_str(), out.size());
 }
 
@@ -56,7 +56,7 @@ void Response::write_mbulk_header(int n){
     char buf[32];
     int count = sprintf(buf, "%d", n);
     write_buffer+="*";
-    write_buffer+=std::string(buf,count);
+    write_buffer+=muduo::string(buf,count);
     write_buffer+="\r\n";
 }
 

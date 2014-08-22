@@ -8,10 +8,11 @@
 
 #include <vector>
 #include <map>
-#include <string>
+//#include <string>
 
 #include <stdint.h>
 
+#include <muduo/base/Types.h>
 #include <muduo/net/Callbacks.h>
 
 #include <boost/shared_ptr.hpp>
@@ -44,11 +45,11 @@ class Request {
   Server *server_;
   int32_t db_index_;
   int32_t arg_count_;
-  std::string name_;
-  std::vector<std::string> args_;
+  muduo::string name_;
+  std::vector<muduo::string> args_;
 
   typedef void (Request::*COMMAND)();
-  static std::map<std::string, COMMAND> cmd_map_;
+  static std::map<muduo::string, COMMAND> cmd_map_;
 
   boost::shared_ptr<Response> response_;
 

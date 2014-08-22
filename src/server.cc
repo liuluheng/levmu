@@ -64,7 +64,7 @@ void Server::db_init(void)
       //TODO the db path
       status = leveldb::DB::Open(options_[i], 
                                  (db_path_ +
-                                  std::string(buf,count)).c_str(),
+                                  muduo::string(buf,count)).c_str(),
                                  &db_[i]);
       if(!status.ok()) {
         puts("leveldb open error");
@@ -89,7 +89,7 @@ void Server::onConnection(const muduo::net::TcpConnectionPtr& conn) {
 void Server::onMessage(const muduo::net::TcpConnectionPtr& conn,
                        muduo::net::Buffer* buf,
                        muduo::Timestamp time) {
-  std::string msg(buf->retrieveAllAsString());
+  muduo::string msg(buf->retrieveAllAsString());
   LOG_INFO << conn->name() << " echo " << msg.size() << " bytes, "
       << "data received at " << time.toString();
 }

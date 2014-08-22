@@ -55,7 +55,7 @@ class Server {
 
   int clients_num_;
   int32_t db_num_;
-  std::string db_path_;
+  muduo::string db_path_;
 
   leveldb::Options *options_;
   leveldb::DB **db_;
