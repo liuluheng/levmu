@@ -9,6 +9,7 @@ The implementation has referred to redis-leveldb...
 ## Acquire && Compile && run
 
     git clone git@github.com:liuluheng/levmu.git
+    cd levmu
     git submodule init
     git submodule update
     cd vendor/muduo
