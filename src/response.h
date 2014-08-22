@@ -20,7 +20,6 @@ class Response {
   explicit 
       Response(const muduo::net::TcpConnectionPtr& conn)
       : conn_(conn), write_buffer_("") {}
-
   ~Response();
 
   void write_nil();
@@ -30,6 +29,7 @@ class Response {
   void write_bulk(const char *out, size_t out_size);
   void write_bulk(const muduo::string &out);
   void write_mbulk_header(int n);
+
  private:
   //None copyable
   Response(const Response&);

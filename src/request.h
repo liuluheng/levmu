@@ -38,10 +38,10 @@ class Request {
 
  private:
   void _run();
-  void levmu_set();
-  void levmu_get();
-  void levmu_incr();
-  void levmu_incrby();
+  void SET();
+  void GET();
+  void INCR();
+  void INCRBY();
 
   Server *server_;
   int32_t db_index_;

@@ -20,10 +20,10 @@ std::map<muduo::string, Request::COMMAND> Request::cmd_map_;
 bool _ignored = Request::init_cmd_map();
 
 bool Request::init_cmd_map() {
-  cmd_map_["set"]              = &Request::levmu_set;
-  cmd_map_["get"]              = &Request::levmu_get;
-  cmd_map_["incr"]             = &Request::levmu_incr;
-  cmd_map_["incrby"]           = &Request::levmu_incrby;
+  cmd_map_["set"]              = &Request::SET;
+  cmd_map_["get"]              = &Request::GET;
+  cmd_map_["incr"]             = &Request::INCR;
+  cmd_map_["incrby"]           = &Request::INCRBY;
 
   return true;
 }
@@ -51,7 +51,7 @@ void Request::run() {
   _run();
 }
 
-void Request::levmu_set() {
+void Request::SET() {
 
   if (args_.size() != 2) {
     LOG_ERROR << "ERR wrong number of arguments for 'set' command";
@@ -61,7 +61,8 @@ void Request::levmu_set() {
 
   leveldb::Status status;
   status = server_->get_db()->Put(server_->write_options(),
-                                  args_[0], args_[1]);
+                                  args_[0],
+                                  args_[1]);
 
   if(!status.ok()) {
     LOG_ERROR << "SET ERROR 1";
@@ -72,7 +73,7 @@ void Request::levmu_set() {
   }
 }
 
-void Request::levmu_get() {
+void Request::GET() {
 
   if (args_.size() != 1) {
     response_->write_error("ERR wrong number of arguments for 'get' command");
@@ -93,7 +94,7 @@ void Request::levmu_get() {
   }
 }
 
-void Request::levmu_incr(){
+void Request::INCR(){
 
   muduo::string out;
   leveldb::Status status;
@@ -133,7 +134,7 @@ void Request::levmu_incr(){
   free(str_newv);
 }
 
-void Request::levmu_incrby(){
+void Request::INCRBY(){
 
   muduo::string out;
   leveldb::Status status;
