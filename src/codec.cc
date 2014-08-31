@@ -22,7 +22,7 @@ namespace levmu {
 
 void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
                            muduo::net::Buffer* buf,
-                           muduo::Timestamp receiveTime) {
+                           muduo::Timestamp) {
   boost::shared_ptr<Request> current_req;
 
   const char *next_idx = buf->peek();
