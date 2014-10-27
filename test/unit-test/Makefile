@@ -4,8 +4,11 @@ CXX = g++
 CXXFLAGS = -Wall -g -O2 -DMUDUO_STD_STRING -I../../vendor/muduo -I../../vendor/leveldb/include
 LDFLAGS = ../../vendor/leveldb/libleveldb.a -L../../vendor/build/release/lib -lmuduo_base -lmuduo_net -lpthread -lgmp
 
-levmu_response : levmuResponse_test.o ../../src/levmuResponse.o status.o testharness.o
+response_test : response_test.o ../../src/response.o status.o testharness.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm *.o
+	rm -f *.o
+
+realclean:
+	rm -f *.o response_test
