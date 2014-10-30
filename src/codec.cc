@@ -40,7 +40,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
         //conn->shutdown();  // FIXME: disable reading
         return;
       }
-      current_req->arg_count_ = get_int(buf, &next_idx);
+      current_req->arg_count_ = get_length(buf, &next_idx);
       current_req->arg_count_--;
     }
 
@@ -53,7 +53,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
         //conn->shutdown();  // FIXME: disable reading
         return;
       }
-      int len = get_int(buf, &next_idx);
+      int32_t len = get_length(buf, &next_idx);
       CHECK_BUFFER(len + 2);
       current_req->name_.assign(next_idx, next_idx + len);
       std::transform(current_req->name_.begin(), 
@@ -73,7 +73,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
         //conn->shutdown();  // FIXME: disable reading
         return;
       }
-      int len = get_int(buf, &next_idx);
+      int32_t len = get_length(buf, &next_idx);
       CHECK_BUFFER(len + 2);
       current_req->args_.push_back(muduo::string(next_idx, 
                                                  next_idx + len));
@@ -91,7 +91,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
   }
 }
 
-size_t redisCodec::get_int(muduo::net::Buffer* buf,
+int32_t redisCodec::get_length(muduo::net::Buffer* buf,
                            const char **next_idx) {
   const char *b = *next_idx;
   size_t val = 0;
@@ -107,7 +107,7 @@ size_t redisCodec::get_int(muduo::net::Buffer* buf,
     return val;
   }
 
-  LOG_ERROR << "get_int::not a full msg";
+  LOG_ERROR << "get_length::not a full msg";
   return -1;
 }
 

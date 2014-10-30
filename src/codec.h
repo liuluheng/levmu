@@ -28,8 +28,8 @@ class redisCodec : boost::noncopyable {
                  muduo::Timestamp receiveTime); 
 
  private:
-  size_t get_int(muduo::net::Buffer* buf, 
-                 const char **next_idx);
+  int32_t get_length(muduo::net::Buffer* buf, 
+                     const char **next_idx);
   void do_request(std::shared_ptr<Request>&);
 
   Server *server_;
