@@ -30,7 +30,7 @@ class redisCodec : boost::noncopyable {
  private:
   size_t get_int(muduo::net::Buffer* buf, 
                  const char **next_idx);
-  void do_request(boost::shared_ptr<Request>);
+  void do_request(std::shared_ptr<Request>&);
 
   Server *server_;
   int msg_len_;

@@ -34,7 +34,7 @@ Request::Request(Server *server,
     db_index_(0),
     arg_count_(-1),
     name_(""),
-    response_(new Response(conn)) {
+    response_(std::make_shared<Response>(conn)) {
     }
 
 void Request::_run() {

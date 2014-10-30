@@ -46,7 +46,10 @@ void Server::db_init(void)
     if(!status.ok()) {
       puts("leveldb open error");
       //exit(); is NOT thread safe. P94
-      //so we could use _exit(); but 
+      //actually this is the main loop thread 
+      //we could'nt consider this
+      //
+      //we could use _exit(); but 
       //it would not destruct global objects,
       //flush stdout
       _exit(1);
@@ -56,23 +59,19 @@ void Server::db_init(void)
 
     db_ = new leveldb::DB*[db_num_];
     char buf[16];
-    for(int32_t i=0;i<db_num_;i++){
+    for(int32_t i = 0; i < db_num_; i++) {
       options_[i].create_if_missing = true;
       options_[i].filter_policy = leveldb::NewBloomFilterPolicy(16);
 
       int count = sprintf(buf, "/db-%03d", i);
       //TODO the db path
       status = leveldb::DB::Open(options_[i], 
-                                 (db_path_ +
-                                  muduo::string(buf,count)).c_str(),
+                                 (db_path_.append(buf, count)).c_str(),
                                  &db_[i]);
       if(!status.ok()) {
         puts("leveldb open error");
-        //exit(); is NOT thread safe. P94
-        //so we could use _exit(); but 
-        //it would not destruct global objects,
-        //flush stdout
         puts(buf);
+        // see above
         _exit(1);
       }
     }

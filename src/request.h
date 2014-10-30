@@ -8,14 +8,11 @@
 
 #include <vector>
 #include <map>
-//#include <string>
 
 #include <stdint.h>
 
 #include <muduo/base/Types.h>
 #include <muduo/net/Callbacks.h>
-
-#include <boost/shared_ptr.hpp>
 
 namespace levmu {
 
@@ -52,7 +49,7 @@ class Request {
   typedef void (Request::*COMMAND)();
   static std::map<muduo::string, COMMAND> cmd_map_;
 
-  boost::shared_ptr<Response> response_;
+  std::shared_ptr<Response> response_;
 
   //None copyable
   Request(const Request&);

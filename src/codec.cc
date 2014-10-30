@@ -8,7 +8,6 @@
 
 #include <muduo/base/Logging.h>
 
-#include <boost/shared_ptr.hpp>
 #include <stdio.h>
 
 #define CHECK_BUFFER(N) do {\
@@ -23,14 +22,14 @@ namespace levmu {
 void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
                            muduo::net::Buffer* buf,
                            muduo::Timestamp) {
-  boost::shared_ptr<Request> current_req;
+  std::shared_ptr<Request> current_req;
 
   const char *next_idx = buf->peek();
   msg_len_ = 0;
 
   while (buf->readableBytes()) {
-    if (!current_req.get()) {
-      current_req.reset(new Request(server_, conn));
+    if (!current_req) {
+      current_req = std::make_shared<Request>(server_, conn);
     }
 
     // 1. read the arg count:
@@ -56,7 +55,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
       }
       int len = get_int(buf, &next_idx);
       CHECK_BUFFER(len + 2);
-      current_req->name_ = muduo::string(next_idx, next_idx + len);
+      current_req->name_.assign(next_idx, next_idx + len);
       std::transform(current_req->name_.begin(), 
                      current_req->name_.end(),
                      current_req->name_.begin(), 
@@ -65,7 +64,7 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
       msg_len_ += len + 2;
     }
 
-    // 3. read a arg
+    // 3. read an arg
     if(current_req->arg_count_ >= 0 
        && current_req->arg_count_ - current_req->args_.size() > 0) {
       CHECK_BUFFER(4);
@@ -84,11 +83,9 @@ void redisCodec::onMessage(const muduo::net::TcpConnectionPtr& conn,
 
     // 4. do the request
     if (current_req->completed()) {
-      assert(current_req.unique());
       buf->retrieve(msg_len_);
       msg_len_ = 0;
       do_request(current_req);
-      assert(current_req.unique());
       current_req.reset();
     }
   }
@@ -114,11 +111,10 @@ size_t redisCodec::get_int(muduo::net::Buffer* buf,
   return -1;
 }
 
-void redisCodec::do_request(boost::shared_ptr<Request> current_req) {
-  assert(current_req.use_count() == 2);
-  if(current_req && current_req->completed()){
-    current_req->run();
-  }
+void redisCodec::do_request(std::shared_ptr<Request> &current_req) {
+  assert(current_req.unique());
+  assert(current_req->completed());
+  current_req->run();
 }
 
 }
