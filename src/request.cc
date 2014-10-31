@@ -52,7 +52,6 @@ void Request::run() {
 }
 
 void Request::SET() {
-
   if (args_.size() != 2) {
     LOG_ERROR << "ERR wrong number of arguments for 'set' command";
     response_->write_error("ERR wrong number of arguments for 'set' command");
@@ -74,7 +73,6 @@ void Request::SET() {
 }
 
 void Request::GET() {
-
   if (args_.size() != 1) {
     response_->write_error("ERR wrong number of arguments for 'get' command");
     return;
@@ -95,7 +93,6 @@ void Request::GET() {
 }
 
 void Request::INCR(){
-
   muduo::string out;
   leveldb::Status status;
 
@@ -134,8 +131,7 @@ void Request::INCR(){
   free(str_newv);
 }
 
-void Request::INCRBY(){
-
+void Request::INCRBY() {
   muduo::string out;
   leveldb::Status status;
   status = server_->get_db()->Get(server_->read_options(),
