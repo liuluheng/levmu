@@ -45,6 +45,9 @@ find_library(GMP_LIBRARY NAMES gmp)
 
 if(GMP_INCLUDE_DIR AND GMP_LIBRARY)
   message(STATUS "found gmp")
+else()
+    #TODO:EXIT
+  message(STATUS "gmp is needed; try sudo apt-get install libgmp-dev")
 endif()
 
 include_directories(${Boost_INCLUDE_DIRS})
