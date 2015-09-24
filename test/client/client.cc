@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
 {
   LOG_INFO << "pid = " << getpid();
   EventLoop loop;
-  uint16_t port = static_cast<uint16_t>(atoi("8323"));
+  uint16_t port = static_cast<uint16_t>(atoi("6379"));
   InetAddress serverAddr("127.0.0.1", port);
 
   levmu::Client client(&loop, serverAddr);

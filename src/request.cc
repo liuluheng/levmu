@@ -67,7 +67,7 @@ void Request::SET() {
     LOG_ERROR << "SET ERROR 1";
     response_->write_error("SET ERROR 1");
   } else {
-    //LOG_INFO << "OK";
+    // LOG_INFO << "OK";
     response_->write_status("OK");
   }
 }

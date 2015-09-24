@@ -8,7 +8,7 @@ from threadpool import ThreadPool
 
 
 def functional_test():
-    r = redis.StrictRedis(host='localhost', port=8323)
+    r = redis.StrictRedis(host='localhost', port=6379)
     # set/get
     print r.set("key", 'b'*56000)
     print len(r.get("key"))
@@ -20,7 +20,7 @@ def functional_test():
     print r.get("incr_key")
 
 def press_test():
-    r = redis.StrictRedis(host='localhost', port=8323)
+    r = redis.StrictRedis(host='localhost', port=6379)
     for i in range(10000):
         key = 'foo_%d'%i
         r.set(key, 'b'*i)

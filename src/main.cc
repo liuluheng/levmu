@@ -16,8 +16,9 @@ int main(int argc, char *argv[])
   LOG_INFO << "pid = " << getpid();
 
   muduo::net::EventLoop loop;
-  muduo::net::InetAddress listenAddr(8323);
+  muduo::net::InetAddress listenAddr(6379);
   levmu::Server server(&loop, listenAddr);
+  LOG_INFO << "listening on  " << listenAddr.toIpPort();
 
   if (argc > 1) {
     server.setThreadNum(atoi(argv[1]));
